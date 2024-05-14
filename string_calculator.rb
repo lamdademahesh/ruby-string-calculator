@@ -18,6 +18,12 @@ class StringCalculator
 
     # Split the string using delimiter and convert the relevant string(s) into integer
     numbers = input.split(delimiter).map(&:to_i)
+
+    # Check if there are any negatives in the passed param
+    negatives = numbers.select{|num| num < 0 }
+    # Raise error if any negative numbers are present
+    raise "Negative numbers not allowed: #{negatives.join(', ')}" if negatives.any?
+
     numbers.sum
   end
 end
