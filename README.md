@@ -36,8 +36,8 @@ To run the tests for StringCalculator, do the following :
 2. Run the subsequent command:
 
     ```
-    rspec string_calculator_spec.Rb
+    rspec string_calculator_spec.rb
     ```
 
-    This will execute the RSpec tests added in the `string_calculator_spec.Rb` document.
+    This will execute the RSpec tests added in the `string_calculator_spec.rb` document.
 
