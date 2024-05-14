@@ -27,8 +27,14 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("1\n2,4")).to eq(7)
       end
 
-      it "should disallow new line as last character" do
-        expect{StringCalculator.add("1, \n")}.to raise_error(RuntimeError, "Invalid input")
+      it "should disallow new line as last character and raise error" do
+        expect{ StringCalculator.add("1, \n") }.to raise_error(RuntimeError, "Invalid input")
+      end
+    end
+
+    context "Negative numbers in the param" do
+      it "should raise error if negative numbers passed" do
+        expect{ StringCalculator.add("1, -3, 4") }.to raise_error(RuntimeError, "Negative numbers not allowed: -3")
       end
     end
   end
