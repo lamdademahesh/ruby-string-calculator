@@ -21,5 +21,15 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("//;\n2;4;6")).to eq(12)
       end
     end
+
+    context "Supporting new line character" do
+      it "should allow new lines between numbers" do
+        expect(StringCalculator.add("1\n2,4")).to eq(7)
+      end
+
+      it "should disallow new line as last character" do
+        expect{StringCalculator.add("1, \n")}.to raise_error(RuntimeError, "Invalid input")
+      end
+    end
   end
 end
