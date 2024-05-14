@@ -13,8 +13,8 @@ class StringCalculator
     # Remove new line characters & replace them with the current delimiter
     input.gsub!("\n", delimiter)
 
-    # Check if the last character is delimiter, if yes raise error
-    raise "Invalid input" if input.end_with?(delimiter)
+    # Check if the last character is delimiter or a new line character, if yes raise error
+    raise "Invalid input" if input.end_with?(delimiter) || input.end_with?("\n")
 
     # Split the string using delimiter and convert the relevant string(s) into integer
     numbers = input.split(delimiter).map(&:to_i)
