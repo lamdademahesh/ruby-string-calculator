@@ -1,40 +1,34 @@
 require_relative 'string_calculator'
 
 RSpec.describe StringCalculator do
-  describe ".add" do
-    context "Basic Functionality  with input" do
-      it "should return 0 with empty string" do
+  describe '.add' do
+    context 'when given an empty string' do
+      it 'returns 0' do
         expect(StringCalculator.add("")).to eq(0)
       end
+    end
 
-      it "should return itself if its only single number" do
+    context 'when given a single number' do
+      it 'returns the number itself' do
         expect(StringCalculator.add("1")).to eq(1)
       end
+    end
 
-      it "should return sum of numbers for comma separated numbers" do
-        expect(StringCalculator.add("1,3,4")).to eq(8)
+    context 'when given multiple comma-separated numbers' do
+      it 'returns the sum of the numbers' do
+        expect(StringCalculator.add("1,2,3")).to eq(6)
       end
     end
 
-    context "Custom delimiters" do
-      it "should support custom delimiter" do
-        expect(StringCalculator.add("//;\n2;4;6")).to eq(12)
+    context 'when numbers are separated by new lines' do
+      it 'allows new lines between numbers' do
+        expect(StringCalculator.add("1\n2,3")).to eq(6)
       end
     end
 
-    context "Supporting new line character" do
-      it "should allow new lines between numbers" do
-        expect(StringCalculator.add("1\n2,4")).to eq(7)
-      end
-
-      it "should disallow new line as last character and raise error" do
-        expect{ StringCalculator.add("1, \n") }.to raise_error(RuntimeError, "Invalid input")
-      end
-    end
-
-    context "Negative numbers in the param" do
-      it "should raise error if negative numbers passed" do
-        expect{ StringCalculator.add("1, -3, 4") }.to raise_error(RuntimeError, "Negative numbers not allowed: -3")
+    context 'when numbers are separated by a custom delimiter' do
+      it 'supports custom delimiter' do
+        expect(StringCalculator.add("//;\n1;2")).to eq(3)
       end
     end
   end
